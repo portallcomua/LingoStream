@@ -1,0 +1,21 @@
+name: DeepSeek Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize] # Запуск при створенні/оновленні PR
+
+permissions:
+  pull-requests: write
+
+jobs:
+  code-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: DeepSeek Code Review
+        uses: hustcer/deepseek-review@v1 # Готовий Action
+        with:
+          chat-token: ${{ secrets.DEEPSEEK_API_KEY }}
+          model: "deepseek-v4-flash" # Економний варіант
