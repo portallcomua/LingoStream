@@ -18,6 +18,13 @@ class DictionaryStore {
     }
   }
 
+  Future<void> remove(String phrase) async {
+    final prefs = await SharedPreferences.getInstance();
+    final current = prefs.getStringList(key) ?? [];
+    current.remove(phrase);
+    await prefs.setStringList(key, current);
+  }
+
   Future<void> clear() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(key);
