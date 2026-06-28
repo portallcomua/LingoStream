@@ -1,20 +1,43 @@
+name: Build LingoStream APK
 
-name: Build LingoStream
 on:
   push:
+    branches:
+      - main
     tags:
       - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
 jobs:
-  build:
+  build-android:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: subosito/flutter-action@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
-      - run: flutter pub get
-      - run: flutter build apk --release
-      - name: Create Release
-        uses: softprops/action-gh-release@v2
+          channel: stable
+
+      - name: Create Android project files
+        run: flutter create --platforms=android --org com.uaserver .
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Build APK
+        run: flutter build apk --release
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
         with:
-          files: build/app/outputs/flutter-apk/app-release.apk
+          name: LingoStream-APK
+          path: build/app/outputs/flutter-apk/app-release.apk
