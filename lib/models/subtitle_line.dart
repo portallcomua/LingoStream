@@ -4,7 +4,7 @@ class SubtitleLine {
   final Duration end;
   final String text;
 
-  SubtitleLine({
+  const SubtitleLine({
     required this.index,
     required this.start,
     required this.end,
