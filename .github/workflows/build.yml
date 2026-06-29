@@ -19,16 +19,31 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
 
-      - name: Create Android project files
+      - name: Install Android SDK 36
         run: |
-          flutter create --platforms=android --org com.uaserver .
-          sed -i 's/compileSdk = flutter.compileSdkVersion/compileSdk = 36/' android/app/build.gradle.kts || true
-          sed -i 's/compileSdkVersion flutter.compileSdkVersion/compileSdkVersion 36/' android/app/build.gradle || true
+          yes | sdkmanager --licenses
+          sdkmanager "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Create Android project files
+        run: flutter create --platforms=android --org com.uaserver .
+
+      - name: Force compileSdk 36
+        run: |
+          grep -R "compileSdk" android/app || true
+          perl -0pi -e 's/compileSdk\s*=\s*flutter\.compileSdkVersion/compileSdk = 36/g' android/app/build.gradle.kts || true
+          perl -0pi -e 's/compileSdkVersion\s+flutter\.compileSdkVersion/compileSdkVersion 36/g' android/app/build.gradle || true
+          grep -R "compileSdk" android/app || true
 
       - name: Install dependencies
         run: flutter pub get
