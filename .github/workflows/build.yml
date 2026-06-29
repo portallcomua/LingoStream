@@ -25,7 +25,10 @@ jobs:
           channel: stable
 
       - name: Create Android project files
-        run: flutter create --platforms=android --org com.uaserver .
+        run: |
+          flutter create --platforms=android --org com.uaserver .
+          sed -i 's/compileSdk = flutter.compileSdkVersion/compileSdk = 36/' android/app/build.gradle.kts || true
+          sed -i 's/compileSdkVersion flutter.compileSdkVersion/compileSdkVersion 36/' android/app/build.gradle || true
 
       - name: Install dependencies
         run: flutter pub get
