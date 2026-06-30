@@ -9,10 +9,10 @@ class LingoLang {
       'mode_movie': 'Кіно & Серіали',
       'mode_pop': 'Поп-музика',
       'mode_rock': 'Рок (Важкий вокал)',
-      'free_limit': 'Залишилося безкоштовного ШІ-голосу:',
+      'free_limit': 'Залишилося ШІ-голосу:',
       'min': 'хв',
       'premium_title': 'Активація Premium (Payhip)',
-      'premium_desc': 'Введіть ключ з пошти, щоб відкрити режим Рок.',
+      'premium_desc': 'Введіть ліцензійний ключ для розблокування.',
       'btn_activate': 'АКТИВУВАТИ ПРЕМІУМ',
       'dict_title': 'Мій Словник LingoStream',
     },
@@ -25,13 +25,12 @@ class LingoLang {
       'mode_movie': 'Movies & Series',
       'mode_pop': 'Pop Music',
       'mode_rock': 'Rock (Heavy Vocals)',
-      'free_limit': 'Remaining Free AI Voice:',
+      'free_limit': 'Free AI Voice left:',
       'min': 'min',
       'premium_title': 'Activate Premium (Payhip)',
-      'premium_desc': 'Enter the key from your email to unlock Rock mode.',
+      'premium_desc': 'Enter license key to unlock features.',
       'btn_activate': 'ACTIVATE PREMIUM',
       'dict_title': 'My LingoStream Dictionary',
     }
   };
 }
-
