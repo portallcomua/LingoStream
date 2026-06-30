@@ -8,7 +8,7 @@ Widget buildDictionaryView(String title) {
       children: [
         Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         const SizedBox(height: 20),
-        const Expanded(child: Center(child: Text('Тут будуть ваші слова з фільмів та пісень', style: TextStyle(color: Colors.grey)))),
+        const Expanded(child: Center(child: Text('Тут будуть збережені слова', style: TextStyle(color: Colors.grey)))),
       ],
     ),
   );
@@ -22,11 +22,11 @@ Widget buildPremiumView(String title, String desc, String btn, TextEditingContro
       children: [
         Text(title, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.cyanAccent)),
         const SizedBox(height: 15),
-        Text(desc, style: const TextStyle(color: Colors.grey, fontSize: 14, height: 1.4)),
-        const SizedBox(height: 30),
+        Text(desc, style: const TextStyle(color: Colors.grey, fontSize: 14)),
+        const SizedBox(height: 20),
         TextField(
           controller: ctrl,
-          decoration: InputDecoration(filled: true, fillColor: const Color(0xff141414), hintText: 'XXXX-XXXX-XXXX-XXXX'),
+          decoration: InputDecoration(filled: true, fillColor: const Color(0xff141414), hintText: 'XXXX-XXXX'),
         ),
         const SizedBox(height: 20),
         ElevatedButton(
@@ -38,4 +38,3 @@ Widget buildPremiumView(String title, String desc, String btn, TextEditingContro
     ),
   );
 }
-
