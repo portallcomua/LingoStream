@@ -25,19 +25,19 @@ jobs:
           flutter-version: '3.22.2'
           channel: 'stable'
 
-      - name: Fix Missing Android Project Files
-        run: flutter create --platforms=android .
-
-      - name: Clean and Install Dependencies
+      - name: Create Temporary Clean App
         run: |
-          flutter clean
+          cd ..
+          flutter create --org com.portallcomua --project-name=lingostream clean_app
+          cp -r $GITHUB_WORKSPACE/lib/* clean_app/lib/
+          cp $GITHUB_WORKSPACE/pubspec.yaml clean_app/pubspec.yaml
+          cd clean_app
           flutter pub get
+          flutter build apk --release
+          cp build/app/outputs/flutter-apk/app-release.apk $GITHUB_WORKSPACE/app-release.apk
 
-      - name: Build Clean APK Release
-        run: flutter build apk --release
-
-      - name: Upload Finished APK Artifact
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: LingoStream-Android-App
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: app-release.apk
