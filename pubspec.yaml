@@ -1,26 +1,17 @@
 name: lingostream
-description: Karaoke language learning app with subtitles, translation, dictionary and learning modes.
-publish_to: "none"
-
-version: 0.1.0+1
+description: AI Live Screen and Voice Translator.
+version: 1.0.0+1
 
 environment:
-  sdk: ">=3.4.0 <4.0.0"
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  file_picker: ^8.3.5
-  shared_preferences: ^2.3.2
-  url_launcher: ^6.3.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
 
 flutter:
   uses-material-design: true
-
-  assets:
-    - assets/logo.png
